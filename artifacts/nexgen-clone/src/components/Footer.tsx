@@ -34,7 +34,7 @@ export default function Footer({ onNavigate }: { onNavigate: (id: string) => voi
             </p>
             <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
               <span className="text-cyan-400">✉</span>
-              <span>info@nexgenbrtechnologies.com</span>
+              <a href="mailto:info@nexgenbrtechnologies.com" className="hover:text-cyan-400 transition-colors">info@nexgenbrtechnologies.com</a>
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
               <span className="text-purple-400">📍</span>
@@ -42,9 +42,14 @@ export default function Footer({ onNavigate }: { onNavigate: (id: string) => voi
             </div>
             {/* Social icons */}
             <div className="flex items-center gap-3">
-              {["𝕏", "in", "📷", "▶"].map((icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors text-sm">
-                  {icon}
+              {[
+                { icon: "𝕏", label: "Twitter" },
+                { icon: "in", label: "LinkedIn" },
+                { icon: "▶", label: "YouTube" },
+                { icon: "📷", label: "Instagram" },
+              ].map((s) => (
+                <a key={s.label} href="#" className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors text-sm">
+                  {s.icon}
                 </a>
               ))}
             </div>
@@ -56,10 +61,7 @@ export default function Footer({ onNavigate }: { onNavigate: (id: string) => voi
             <ul className="space-y-2.5">
               {QUICK_LINKS.map((link) => (
                 <li key={link.id}>
-                  <button
-                    onClick={() => onNavigate(link.id)}
-                    className="text-sm text-gray-400 hover:text-cyan-400 transition-colors text-left"
-                  >
+                  <button onClick={() => onNavigate(link.id)} className="text-sm text-gray-400 hover:text-cyan-400 transition-colors text-left">
                     {link.label}
                   </button>
                 </li>
@@ -67,7 +69,7 @@ export default function Footer({ onNavigate }: { onNavigate: (id: string) => voi
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Legal + Hours */}
           <div>
             <h4 className="text-white font-bold mb-4">Legal</h4>
             <ul className="space-y-2.5">
@@ -79,16 +81,16 @@ export default function Footer({ onNavigate }: { onNavigate: (id: string) => voi
             </ul>
             <h4 className="text-white font-bold mt-8 mb-4">Office Hours</h4>
             <ul className="space-y-1.5 text-xs text-gray-500">
-              <li className="flex justify-between gap-4"><span>Mon – Fri</span><span className="text-white font-medium">10:00 AM – 6:00 PM</span></li>
-              <li className="flex justify-between gap-4"><span>Saturday</span><span className="text-white font-medium">10:00 AM – 4:00 PM</span></li>
-              <li className="flex justify-between gap-4"><span>Sunday</span><span className="text-white font-medium">11:00 AM – 2:00 PM</span></li>
+              <li className="flex justify-between gap-4"><span>Mon – Fri</span><span className="text-white font-medium">9 AM – 7 PM</span></li>
+              <li className="flex justify-between gap-4"><span>Saturday</span><span className="text-white font-medium">9 AM – 5 PM</span></li>
+              <li className="flex justify-between gap-4"><span>Sunday</span><span className="text-white font-medium">10 AM – 2 PM</span></li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-600 text-sm">© 2026 NexGen BR Technologies. All rights reserved.</p>
-          <p className="text-gray-700 text-xs">Built with ❤️ in Wardha, Maharashtra</p>
+          <p className="text-gray-700 text-xs">Designed for the builders of tomorrow.</p>
         </div>
       </div>
     </footer>

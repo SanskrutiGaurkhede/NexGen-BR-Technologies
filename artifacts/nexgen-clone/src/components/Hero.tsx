@@ -1,10 +1,10 @@
 const TECH_STACK = ["Python", "FastAPI", "React", "Node.js", "TensorFlow", "Django", "AWS", "Docker", "MongoDB", "PostgreSQL"];
 
 const BADGES = [
-  { icon: "💻", label: "Industry-Level Courses" },
-  { icon: "⚡", label: "Real-Time Projects" },
-  { icon: "🏛️", label: "Internship Programs" },
-  { icon: "🧭", label: "Career Guidance" },
+  { icon: "💻", label: "Industry-Level Courses", id: "courses" },
+  { icon: "⚡", label: "Real-Time Projects", id: "projects" },
+  { icon: "🏛️", label: "Internship Programs", id: "internship" },
+  { icon: "🧭", label: "Career Guidance", id: "hire" },
 ];
 
 const STATS = [
@@ -24,9 +24,7 @@ function TickerRow({ items, reverse = false }: { items: string[]; reverse?: bool
         style={{ width: "max-content" }}
       >
         {doubled.map((item, i) => (
-          <span key={i} className="text-4xl font-black tracking-tight text-white/[0.05] select-none">
-            {item}
-          </span>
+          <span key={i} className="text-4xl font-black tracking-tight text-white/[0.05] select-none">{item}</span>
         ))}
       </div>
     </div>
@@ -49,10 +47,7 @@ export default function Hero({ onNavigate }: { onNavigate: (id: string) => void 
         <div className="relative mb-6">
           <div
             className="w-28 h-28 rounded-3xl flex items-center justify-center text-white font-black text-5xl"
-            style={{
-              background: "linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%)",
-              boxShadow: "0 0 60px rgba(109,40,217,0.45)",
-            }}
+            style={{ background: "linear-gradient(135deg,#6d28d9 0%,#4f46e5 100%)", boxShadow: "0 0 60px rgba(109,40,217,0.45)" }}
           >
             N
           </div>
@@ -84,9 +79,13 @@ export default function Hero({ onNavigate }: { onNavigate: (id: string) => void 
 
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           {BADGES.map((badge) => (
-            <span key={badge.label} className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-gray-300 border border-white/10 bg-white/5 backdrop-blur-sm">
+            <button
+              key={badge.label}
+              onClick={() => onNavigate(badge.id)}
+              className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-gray-300 border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all"
+            >
               <span>{badge.icon}</span>{badge.label}
-            </span>
+            </button>
           ))}
         </div>
 

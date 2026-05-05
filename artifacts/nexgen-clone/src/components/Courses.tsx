@@ -1,10 +1,10 @@
 const COURSES = [
   {
     icon: "🐍",
-    title: "Python Full Stack",
-    color: "from-yellow-500 to-orange-400",
-    glow: "rgba(234,179,8,0.2)",
-    duration: "3 Months",
+    title: "Python Development",
+    color: "from-yellow-400 to-green-400",
+    glow: "rgba(250,204,21,0.25)",
+    duration: "2–3 Months",
     skills: ["Python", "Flask", "FastAPI", "REST APIs"],
     desc: "Write clean, scalable Python backend services and automate real-world workflows.",
   },
@@ -12,64 +12,73 @@ const COURSES = [
     icon: "☕",
     title: "Java Development",
     color: "from-orange-500 to-red-400",
-    glow: "rgba(249,115,22,0.2)",
-    duration: "3 Months",
-    skills: ["Java", "Spring Boot", "Microservices", "JPA"],
-    desc: "Master enterprise Java with Spring Boot and build production-grade REST APIs.",
+    glow: "rgba(249,115,22,0.25)",
+    duration: "2–3 Months",
+    skills: ["Java", "Spring Boot", "Hibernate", "SQL"],
+    desc: "Build enterprise-grade Java applications with industry-standard frameworks.",
   },
   {
     icon: "📊",
-    title: "Data Science & ML",
-    color: "from-blue-500 to-cyan-400",
-    glow: "rgba(79,110,247,0.2)",
-    duration: "4 Months",
-    skills: ["Python", "Pandas", "Scikit-learn", "TensorFlow"],
-    desc: "From data wrangling to model deployment — become a job-ready data scientist.",
-  },
-  {
-    icon: "⚛️",
-    title: "React + Node.js",
-    color: "from-cyan-500 to-blue-400",
-    glow: "rgba(6,182,212,0.2)",
+    title: "Data Science",
+    color: "from-purple-500 to-pink-400",
+    glow: "rgba(168,85,247,0.25)",
     duration: "3 Months",
-    skills: ["React", "Node.js", "MongoDB", "Express"],
-    desc: "Build full-stack MERN applications with modern component architecture.",
+    skills: ["Python", "Pandas", "NumPy", "Matplotlib"],
+    desc: "Extract insights from real datasets and drive data-informed decisions.",
   },
   {
-    icon: "☁️",
-    title: "Cloud & DevOps",
-    color: "from-violet-500 to-purple-400",
-    glow: "rgba(139,92,246,0.2)",
-    duration: "2 Months",
-    skills: ["AWS", "Docker", "Kubernetes", "CI/CD"],
-    desc: "Deploy, scale, and automate cloud infrastructure with industry best practices.",
+    icon: "🧠",
+    title: "Machine Learning",
+    color: "from-indigo-500 to-purple-400",
+    glow: "rgba(99,102,241,0.25)",
+    duration: "3 Months",
+    skills: ["Scikit-learn", "TensorFlow", "Keras", "Python"],
+    desc: "Train, evaluate, and deploy ML models on industry-level datasets.",
   },
   {
     icon: "🤖",
-    title: "AI & Deep Learning",
-    color: "from-emerald-500 to-teal-400",
-    glow: "rgba(16,185,129,0.2)",
-    duration: "4 Months",
-    skills: ["Python", "PyTorch", "NLP", "Computer Vision"],
-    desc: "Build neural networks, fine-tune LLMs, and deploy AI models to production.",
+    title: "Artificial Intelligence",
+    color: "from-fuchsia-500 to-violet-500",
+    glow: "rgba(217,70,239,0.25)",
+    duration: "3 Months",
+    skills: ["Deep Learning", "NLP", "Computer Vision", "PyTorch"],
+    desc: "Dive into cutting-edge AI techniques including LLMs, NLP, and computer vision.",
+  },
+  {
+    icon: "📈",
+    title: "Data Analyst",
+    color: "from-teal-400 to-cyan-500",
+    glow: "rgba(20,184,166,0.25)",
+    duration: "2 Months",
+    skills: ["Excel", "SQL", "Power BI", "Tableau"],
+    desc: "Analyze, visualize, and report on data to inform strategic business decisions.",
+  },
+  {
+    icon: "☁️",
+    title: "Cloud Computing",
+    color: "from-sky-500 to-blue-400",
+    glow: "rgba(14,165,233,0.25)",
+    duration: "3 Months",
+    skills: ["AWS", "Azure", "GCP", "Docker"],
+    desc: "Deploy, manage, and scale cloud infrastructure across AWS, Azure, and GCP.",
+  },
+  {
+    icon: "⚙️",
+    title: "DevOps",
+    color: "from-green-400 to-emerald-500",
+    glow: "rgba(52,211,153,0.25)",
+    duration: "3 Months",
+    skills: ["CI/CD", "Kubernetes", "Terraform", "Linux"],
+    desc: "Automate deployment pipelines and manage infra-as-code at scale.",
   },
   {
     icon: "🔐",
     title: "Cyber Security",
-    color: "from-red-500 to-rose-400",
-    glow: "rgba(239,68,68,0.2)",
-    duration: "2 Months",
-    skills: ["Ethical Hacking", "CEH Prep", "Pentesting", "OSINT"],
-    desc: "Hands-on ethical hacking labs and CEH exam preparation with live attack simulations.",
-  },
-  {
-    icon: "📈",
-    title: "Data Analytics",
-    color: "from-pink-500 to-fuchsia-400",
-    glow: "rgba(236,72,153,0.2)",
-    duration: "2 Months",
-    skills: ["Power BI", "SQL", "Excel", "Tableau"],
-    desc: "Transform raw data into executive dashboards and business intelligence reports.",
+    color: "from-red-500 to-orange-400",
+    glow: "rgba(239,68,68,0.25)",
+    duration: "3 Months",
+    skills: ["Ethical Hacking", "Network Security", "VAPT", "OWASP"],
+    desc: "Learn to protect systems, networks, and data from modern cyber threats.",
   },
 ];
 
@@ -90,17 +99,19 @@ export default function Courses() {
             </span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Project-first curricula built for real job descriptions. Every course ends with a deployable capstone project.
+            Pick a track. Build a portfolio. Get hired. Every course includes live projects, mentor feedback, and a verified certificate.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {COURSES.map((course) => (
             <div
               key={course.title}
-              className="group rounded-2xl border border-white/8 bg-white/[0.03] p-5 hover:border-white/15 transition-all duration-300 flex flex-col"
+              className="group rounded-2xl border border-white/8 bg-white/[0.03] p-6 hover:border-white/15 transition-all duration-300 flex flex-col"
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 40px ${course.glow}`; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
             >
-              <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${course.color} flex items-center justify-center text-lg mb-4 shadow-lg`}>
+              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${course.color} flex items-center justify-center text-xl mb-4 shadow-lg`}>
                 {course.icon}
               </div>
               <div className="flex items-center justify-between mb-1">
@@ -115,12 +126,14 @@ export default function Courses() {
                   </span>
                 ))}
               </div>
-              <button className={`w-full py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r ${course.color} hover:opacity-90 transition-opacity`}>
+              <button className={`w-full py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r ${course.color} hover:opacity-90 transition-opacity`}>
                 Enroll Now →
               </button>
             </div>
           ))}
         </div>
+
+        <p className="text-center text-gray-600 text-sm mt-8">Not sure which course to pick? <a href="mailto:info@nexgenbrtechnologies.com" className="text-purple-400 hover:underline">Contact us →</a></p>
       </div>
     </section>
   );

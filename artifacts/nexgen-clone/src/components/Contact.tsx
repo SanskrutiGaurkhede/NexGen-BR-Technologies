@@ -10,7 +10,7 @@ const SUBJECTS = [
 ];
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "", resume: "" });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -42,8 +42,8 @@ export default function Contact() {
               we respond fast.
             </span>
           </h2>
-          <p className="text-gray-400 max-w-lg">
-            Whether you're interested in a course, internship, or hiring our graduates — drop us a message and we'll get back to you within 24 hours.
+          <p className="text-gray-400 max-w-xl">
+            Whether you're interested in courses, internships, or hiring. We typically respond within 24 hours. For urgent matters, reach out via WhatsApp.
           </p>
         </div>
 
@@ -54,29 +54,31 @@ export default function Contact() {
               <div className="flex flex-col items-center justify-center h-full py-12 text-center">
                 <div className="text-6xl mb-4">✅</div>
                 <h3 className="text-white font-bold text-xl mb-2">Message Sent!</h3>
-                <p className="text-gray-400 text-sm">We'll get back to you within 24 hours. Check your inbox for a confirmation.</p>
+                <p className="text-gray-400 text-sm mb-2">A copy has been forwarded to info@nexgenbrtechnologies.com</p>
+                <button onClick={() => setSent(false)} className="text-purple-400 text-sm hover:underline mt-2">Send another message</button>
               </div>
             ) : (
               <form onSubmit={onSubmit} className="space-y-5">
+                <h3 className="text-white font-bold text-lg mb-2">Send us a Message</h3>
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className={labelCls}>Your Name</label>
+                    <label className={labelCls}>Full Name *</label>
                     <input className={inputCls} placeholder="Rahul Sharma" value={form.name} onChange={onChange("name")} required />
                   </div>
                   <div>
-                    <label className={labelCls}>Email Address</label>
+                    <label className={labelCls}>Email Address *</label>
                     <input type="email" className={inputCls} placeholder="rahul@email.com" value={form.email} onChange={onChange("email")} required />
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className={labelCls}>Phone Number</label>
-                    <input className={inputCls} placeholder="+91 98765 43210" value={form.phone} onChange={onChange("phone")} />
+                    <label className={labelCls}>Phone Number *</label>
+                    <input className={inputCls} placeholder="+91 91234 56789" value={form.phone} onChange={onChange("phone")} />
                   </div>
                   <div>
-                    <label className={labelCls}>Subject</label>
+                    <label className={labelCls}>Select a topic…</label>
                     <select className={inputCls} value={form.subject} onChange={onChange("subject")} required>
-                      <option value="">Select subject…</option>
+                      <option value="">Select a topic…</option>
                       {SUBJECTS.map((s) => <option key={s}>{s}</option>)}
                     </select>
                   </div>
@@ -91,6 +93,10 @@ export default function Contact() {
                     required
                   />
                 </div>
+                <div>
+                  <label className={labelCls}>Resume / Portfolio Link (optional)</label>
+                  <input className={inputCls} placeholder="https://github.com/yourprofile" value={form.resume} onChange={onChange("resume")} />
+                </div>
                 <button
                   type="submit"
                   disabled={loading}
@@ -103,31 +109,45 @@ export default function Contact() {
             )}
           </div>
 
-          {/* Info */}
-          <div className="lg:col-span-2 flex flex-col gap-5">
+          {/* Info sidebar */}
+          <div className="lg:col-span-2 flex flex-col gap-4">
             {[
-              { icon: "📧", title: "Email Us", detail: "info@nexgenbrtechnologies.com", sub: "We reply within 24 hours" },
-              { icon: "📍", title: "Location", detail: "Wardha, Nagpur, Maharashtra, India", sub: "Online & offline training available" },
-              { icon: "🕐", title: "Office Hours", detail: "Mon–Sat: 10:00 AM – 6:00 PM", sub: "Sunday: 11:00 AM – 2:00 PM" },
+              { icon: "📧", title: "Email Us", detail: "info@nexgenbrtechnologies.com", sub: "info@nexgenbrtechnologies.com", link: "mailto:info@nexgenbrtechnologies.com" },
+              { icon: "💬", title: "WhatsApp / Call", detail: "+91 91234 56789", sub: "Urgent queries — chat directly", link: "https://wa.me/919123456789" },
+              { icon: "📍", title: "Wardha, Nagpur", detail: "Maharashtra, India", sub: "Online & offline training available" },
             ].map((item) => (
               <div key={item.title} className="rounded-2xl border border-white/8 bg-white/[0.02] p-5 flex gap-4">
                 <span className="text-2xl">{item.icon}</span>
                 <div>
                   <h4 className="text-white font-semibold text-sm mb-0.5">{item.title}</h4>
-                  <p className="text-gray-300 text-sm">{item.detail}</p>
+                  {item.link ? (
+                    <a href={item.link} className="text-gray-300 text-sm hover:text-cyan-400 transition-colors">{item.detail}</a>
+                  ) : (
+                    <p className="text-gray-300 text-sm">{item.detail}</p>
+                  )}
                   <p className="text-gray-600 text-xs mt-0.5">{item.sub}</p>
                 </div>
               </div>
             ))}
 
+            {/* Office Hours */}
+            <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-5">
+              <h4 className="text-white font-semibold text-sm mb-3">Office Hours</h4>
+              <div className="space-y-2 text-xs">
+                <div className="flex justify-between"><span className="text-gray-400">Mon – Fri</span><span className="text-white font-medium">9 AM – 7 PM</span></div>
+                <div className="flex justify-between"><span className="text-gray-400">Saturday</span><span className="text-white font-medium">9 AM – 5 PM</span></div>
+                <div className="flex justify-between"><span className="text-gray-400">Sunday</span><span className="text-white font-medium">10 AM – 2 PM</span></div>
+              </div>
+            </div>
+
             {/* Map */}
-            <div className="rounded-2xl overflow-hidden border border-white/8 flex-1 min-h-[180px]">
+            <div className="rounded-2xl overflow-hidden border border-white/8 flex-1 min-h-[160px]">
               <iframe
                 title="NexGen BR Technologies Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59834.96284455257!2d78.58009689999999!3d20.745222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd39c7ef4c8d111%3A0x6f5f95eff1a3c3ca!2sWardha%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1715600000000!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
-                style={{ border: 0, minHeight: 180, filter: "invert(90%) hue-rotate(180deg)" }}
+                style={{ border: 0, minHeight: 160, filter: "invert(90%) hue-rotate(180deg)" }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

@@ -1,8 +1,8 @@
 const SERVICES = [
   {
     icon: "🎓",
-    title: "Industry-Level Training",
-    desc: "Structured curriculum built for real job outcomes. Every module is mapped to actual job descriptions and interview patterns.",
+    title: "Industry-Ready Courses",
+    desc: "Structured learning tracks in Web Dev, Data Science, AI/ML, Python, Java, and more — built for real job outcomes.",
     color: "from-blue-500 to-cyan-400",
     glow: "rgba(79,110,247,0.15)",
     tag: "Learning",
@@ -10,7 +10,7 @@ const SERVICES = [
   {
     icon: "🛠️",
     title: "Live Project Training",
-    desc: "Hands-on training on real-world projects — giving students production-level experience before their first job.",
+    desc: "Hands-on training on real-world projects — from concept to deployment — giving students production-level experience.",
     color: "from-violet-500 to-purple-400",
     glow: "rgba(139,92,246,0.15)",
     tag: "Projects",
@@ -34,18 +34,58 @@ const SERVICES = [
   {
     icon: "🚀",
     title: "Placement Assistance",
-    desc: "End-to-end placement support — resume building, mock interviews, LinkedIn optimization, and company referrals.",
+    desc: "End-to-end placement support — resume building, mock interviews, LinkedIn optimization, and direct recruiter connects.",
     color: "from-orange-500 to-amber-400",
     glow: "rgba(249,115,22,0.15)",
     tag: "Career",
   },
   {
-    icon: "☁️",
-    title: "Cloud & DevOps Labs",
-    desc: "Practical AWS, Docker, and Kubernetes labs. Students deploy real applications to cloud infrastructure during training.",
+    icon: "🧭",
+    title: "Career Counselling",
+    desc: "1-on-1 sessions with industry professionals to map your career path, skill gaps, and growth roadmap.",
     color: "from-pink-500 to-rose-400",
     glow: "rgba(236,72,153,0.15)",
-    tag: "Cloud",
+    tag: "Guidance",
+  },
+  {
+    icon: "🌐",
+    title: "Web Development",
+    desc: "Full-stack web application development — from responsive UI to scalable backend APIs and cloud deployment.",
+    color: "from-sky-500 to-blue-400",
+    glow: "rgba(14,165,233,0.15)",
+    tag: "Development",
+  },
+  {
+    icon: "📊",
+    title: "Data Science & Analytics",
+    desc: "Extracting business insights from complex data using Python, SQL, Power BI, and statistical modeling.",
+    color: "from-indigo-500 to-violet-400",
+    glow: "rgba(99,102,241,0.15)",
+    tag: "Data",
+  },
+  {
+    icon: "🤖",
+    title: "AI & ML Solutions",
+    desc: "Building intelligent systems with predictive models, NLP pipelines, computer vision, and LLM integrations.",
+    color: "from-fuchsia-500 to-pink-400",
+    glow: "rgba(217,70,239,0.15)",
+    tag: "AI / ML",
+  },
+  {
+    icon: "📚",
+    title: "Full Stack Training",
+    desc: "Comprehensive curriculum covering frontend frameworks, backend APIs, databases, and deployment pipelines.",
+    color: "from-teal-500 to-emerald-400",
+    glow: "rgba(20,184,166,0.15)",
+    tag: "Training",
+  },
+  {
+    icon: "🐍",
+    title: "Python Engineering",
+    desc: "Scripting, automation, Django/FastAPI backend development, and data pipeline engineering using Python.",
+    color: "from-yellow-500 to-amber-400",
+    glow: "rgba(245,158,11,0.15)",
+    tag: "Python",
   },
 ];
 
@@ -75,9 +115,8 @@ export default function Services() {
             <div
               key={svc.title}
               className="group rounded-2xl border border-white/8 bg-white/[0.03] p-7 hover:border-white/15 transition-all duration-300 cursor-default"
-              style={{ boxShadow: `0 0 0 0 ${svc.glow}` }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 40px ${svc.glow}`; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `0 0 0 0 ${svc.glow}`; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
             >
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${svc.color} flex items-center justify-center text-xl mb-5 shadow-lg`}>
                 {svc.icon}
