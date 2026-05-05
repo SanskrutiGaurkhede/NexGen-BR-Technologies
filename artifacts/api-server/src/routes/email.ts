@@ -1,0 +1,131 @@
+import { Router } from "express";
+import nodemailer from "nodemailer";
+
+const router = Router();
+
+const RECIPIENT = "info@nexgenbrtechnologies.com";
+
+function createTransporter() {
+  const user = process.env["GMAIL_USER"];
+  const pass = process.env["GMAIL_APP_PASSWORD"];
+  if (!user || !pass) return null;
+  return nodemailer.createTransport({
+    service: "gmail",
+    auth: { user, pass },
+  });
+}
+
+async function sendMail(subject: string, html: string) {
+  const transporter = createTransporter();
+  if (!transporter) {
+    console.log("[email] SMTP not configured — logging submission:\n", subject);
+    return;
+  }
+  await transporter.sendMail({
+    from: `"NexGen BR Website" <${process.env["GMAIL_USER"]}>`,
+    to: RECIPIENT,
+    subject,
+    html,
+  });
+}
+
+function row(label: string, value: string | undefined) {
+  if (!value) return "";
+  return `<tr><td style="padding:6px 12px;color:#888;font-size:13px;white-space:nowrap">${label}</td><td style="padding:6px 12px;color:#fff;font-size:13px">${value}</td></tr>`;
+}
+
+function emailTable(title: string, rows: string) {
+  return `<!DOCTYPE html><html><body style="background:#08091a;color:#fff;font-family:Inter,sans-serif;padding:32px">
+    <h2 style="color:#a855f7;margin-bottom:16px">${title}</h2>
+    <table style="border-collapse:collapse;width:100%;max-width:560px;background:#111827;border-radius:12px;overflow:hidden">
+      <tbody>${rows}</tbody>
+    </table>
+    <p style="color:#6b7280;font-size:12px;margin-top:20px">Sent from NexGen BR Technologies website</p>
+  </body></html>`;
+}
+
+// Contact form
+router.post("/contact", async (req, res) => {
+  try {
+    const { name, email, phone, subject, message, resume } = req.body;
+    const html = emailTable("New Contact Message", [
+      row("Name", name), row("Email", email), row("Phone", phone),
+      row("Topic", subject), row("Message", message), row("Portfolio", resume),
+    ].join(""));
+    await sendMail(`[Contact] ${subject || "New Message"} — ${name}`, html);
+    res.json({ ok: true });
+  } catch (err) {
+    req.log.error({ err }, "contact email failed");
+    res.status(500).json({ ok: false, error: "Failed to send" });
+  }
+});
+
+// Course enrollment
+router.post("/students/enroll", async (req, res) => {
+  try {
+    const { name, email, phone, collegeName, collegeId, department, year, course } = req.body;
+    const html = emailTable("New Course Enrollment", [
+      row("Name", name), row("Email", email), row("Phone", phone),
+      row("College", collegeName), row("College ID", collegeId),
+      row("Department", department), row("Year", year), row("Course", course),
+    ].join(""));
+    await sendMail(`[Enroll] ${course} — ${name}`, html);
+    res.json({ ok: true });
+  } catch (err) {
+    req.log.error({ err }, "enroll email failed");
+    res.status(500).json({ ok: false, error: "Failed to send" });
+  }
+});
+
+// Internship apply
+router.post("/internship/apply", async (req, res) => {
+  try {
+    const { name, email, phone, college, year, domain, skills, message, resume } = req.body;
+    const html = emailTable("New Internship Application", [
+      row("Name", name), row("Email", email), row("Phone", phone),
+      row("College", college), row("Year", year), row("Domain", domain),
+      row("Skills", skills), row("Message", message), row("Portfolio", resume),
+    ].join(""));
+    await sendMail(`[Internship] ${domain} — ${name}`, html);
+    res.json({ ok: true });
+  } catch (err) {
+    req.log.error({ err }, "internship email failed");
+    res.status(500).json({ ok: false, error: "Failed to send" });
+  }
+});
+
+// Trainer apply
+router.post("/hire/trainer", async (req, res) => {
+  try {
+    const { name, email, phone, experience, linkedin, portfolio, skills, bio } = req.body;
+    const html = emailTable("New Trainer Application", [
+      row("Name", name), row("Email", email), row("Phone", phone),
+      row("Experience", experience), row("LinkedIn", linkedin),
+      row("Portfolio", portfolio), row("Skills", skills), row("Bio", bio),
+    ].join(""));
+    await sendMail(`[Trainer] Application — ${name}`, html);
+    res.json({ ok: true });
+  } catch (err) {
+    req.log.error({ err }, "trainer email failed");
+    res.status(500).json({ ok: false, error: "Failed to send" });
+  }
+});
+
+// Student apply
+router.post("/hire/student", async (req, res) => {
+  try {
+    const { name, email, phone, college, year, domain, skills, message } = req.body;
+    const html = emailTable("New Student Application", [
+      row("Name", name), row("Email", email), row("Phone", phone),
+      row("College", college), row("Year", year), row("Domain", domain),
+      row("Skills", skills), row("Message", message),
+    ].join(""));
+    await sendMail(`[Student Apply] ${domain} — ${name}`, html);
+    res.json({ ok: true });
+  } catch (err) {
+    req.log.error({ err }, "student email failed");
+    res.status(500).json({ ok: false, error: "Failed to send" });
+  }
+});
+
+export default router;
