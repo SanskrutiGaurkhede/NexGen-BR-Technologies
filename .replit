@@ -35,5 +35,5 @@ externalPort = 80
 
 [userenv.shared]
 SMTP_HOST = "smtp.titan.email"
-SMTP_PORT = "587"
+SMTP_PORT = "465"
 SMTP_USER = "info@nexgenbrtechnologies.com"

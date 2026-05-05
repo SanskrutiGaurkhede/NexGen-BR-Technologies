@@ -3,26 +3,32 @@ import nodemailer from "nodemailer";
 
 const router = Router();
 
-const RECIPIENT = process.env["CONTACT_EMAIL"] || "info@nexgenbrtechnologies.com";
+const RECIPIENT = "info@nexgenbrtechnologies.com";
+const SMTP_USER = process.env["SMTP_USER"] || "info@nexgenbrtechnologies.com";
 
 function createTransporter() {
-  const user = process.env["GMAIL_USER"];
-  const pass = process.env["GMAIL_APP_PASSWORD"];
-  if (!user || !pass) return null;
+  const pass = process.env["TITAN_EMAIL_PASSWORD"];
+  if (!pass) return null;
+  const port = Number(process.env["SMTP_PORT"] || 465);
+  const secure = port === 465;
   return nodemailer.createTransport({
-    service: "gmail",
-    auth: { user, pass },
+    host: process.env["SMTP_HOST"] || "smtp.titan.email",
+    port,
+    secure,
+    auth: { user: SMTP_USER, pass },
+    authMethod: "LOGIN",
+    tls: { rejectUnauthorized: false },
   });
 }
 
 async function sendMail(subject: string, html: string, attachments?: nodemailer.Attachment[]) {
   const transporter = createTransporter();
   if (!transporter) {
-    console.log(`[EMAIL NOT SENT — add GMAIL_USER + GMAIL_APP_PASSWORD env vars]\nSubject: ${subject}`);
+    console.log(`[EMAIL NOT SENT — TITAN_EMAIL_PASSWORD not set]\nSubject: ${subject}`);
     return false;
   }
   await transporter.sendMail({
-    from: `"NexGen BR Website" <${process.env["GMAIL_USER"]}>`,
+    from: `"NexGen BR Technologies" <${SMTP_USER}>`,
     to: RECIPIENT,
     subject,
     html,
