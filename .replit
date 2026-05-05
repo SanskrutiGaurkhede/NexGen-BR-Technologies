@@ -30,3 +30,10 @@ externalPort = 8081
 [[ports]]
 localPort = 21133
 externalPort = 80
+
+[userenv]
+
+[userenv.shared]
+SMTP_HOST = "smtp.titan.email"
+SMTP_PORT = "587"
+SMTP_USER = "info@nexgenbrtechnologies.com"
