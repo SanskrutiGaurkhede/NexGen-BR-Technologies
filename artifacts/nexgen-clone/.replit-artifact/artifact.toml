@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "NexGen BR Technologies"
+version = "1.0.0"
+id = "artifacts/nexgen-clone"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21133
+
+[services.development]
+run = "pnpm --filter @workspace/nexgen-clone run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/nexgen-clone", "run", "build" ]
+publicDir = "artifacts/nexgen-clone/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21133"
+BASE_PATH = "/"
