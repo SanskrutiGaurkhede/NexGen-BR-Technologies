@@ -65,7 +65,7 @@ export default function Hero({ onNavigate }: { onNavigate: (id: string) => void 
           <span className="h-px w-12 bg-gray-700" />
         </div>
 
-        <h1 className="text-6xl md:text-8xl font-black text-white leading-none mb-6 tracking-tight">
+        <h1 className="font-black text-white leading-none mb-6 tracking-tight whitespace-nowrap" style={{ fontSize: "clamp(2.6rem, 7vw, 6rem)" }}>
           Learn.{" "}
           <span style={{ background: "linear-gradient(90deg,#a855f7,#6366f1)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
             Build.
