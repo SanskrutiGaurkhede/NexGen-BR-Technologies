@@ -125,7 +125,7 @@ export default function Services() {
                 {svc.tag}
               </span>
               <h3 className="text-white font-bold text-lg mb-3">{svc.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">{svc.desc}</p>
+              <p className="text-gray-400 text-sm leading-relaxed text-justify">{svc.desc}</p>
             </div>
           ))}
         </div>

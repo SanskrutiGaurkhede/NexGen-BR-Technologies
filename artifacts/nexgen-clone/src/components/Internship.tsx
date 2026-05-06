@@ -88,7 +88,7 @@ export default function Internship() {
               </div>
               <h3 className="text-white font-bold text-base mb-1">{d.title}</h3>
               <span className="text-[10px] text-gray-500 font-semibold tracking-widest uppercase mb-3">⏱ {d.duration}</span>
-              <p className="text-gray-400 text-xs leading-relaxed mb-4 flex-grow">{d.desc}</p>
+              <p className="text-gray-400 text-xs leading-relaxed mb-4 flex-grow text-justify">{d.desc}</p>
               <div className="flex flex-wrap gap-1.5 mb-4">
                 {d.skills.map(s => (
                   <span key={s} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-gray-400">{s}</span>
@@ -109,7 +109,7 @@ export default function Internship() {
               <span className="text-2xl">{p.icon}</span>
               <div>
                 <h4 className="text-white font-semibold text-sm mb-1">{p.title}</h4>
-                <p className="text-gray-500 text-xs">{p.desc}</p>
+                <p className="text-gray-500 text-xs text-justify">{p.desc}</p>
               </div>
             </div>
           ))}

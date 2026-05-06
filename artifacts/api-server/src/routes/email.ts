@@ -4,20 +4,14 @@ import nodemailer from "nodemailer";
 const router = Router();
 
 const RECIPIENT = "info@nexgenbrtechnologies.com";
-const SMTP_USER = process.env["SMTP_USER"] || "info@nexgenbrtechnologies.com";
+const GMAIL_USER = process.env["GMAIL_USER"] || "";
 
 function createTransporter() {
-  const pass = process.env["TITAN_EMAIL_PASSWORD"];
-  if (!pass) return null;
-  const port = Number(process.env["SMTP_PORT"] || 465);
-  const secure = port === 465;
+  const pass = process.env["GMAIL_APP_PASSWORD"];
+  if (!pass || !GMAIL_USER) return null;
   return nodemailer.createTransport({
-    host: process.env["SMTP_HOST"] || "smtp.titan.email",
-    port,
-    secure,
-    auth: { user: SMTP_USER, pass },
-    authMethod: "LOGIN",
-    tls: { rejectUnauthorized: false },
+    service: "gmail",
+    auth: { user: GMAIL_USER, pass },
   });
 }
 
@@ -28,7 +22,7 @@ async function sendMail(subject: string, html: string, attachments?: nodemailer.
     return false;
   }
   await transporter.sendMail({
-    from: `"NexGen BR Technologies" <${SMTP_USER}>`,
+    from: `"NexGen BR Technologies" <${GMAIL_USER}>`,
     to: RECIPIENT,
     subject,
     html,

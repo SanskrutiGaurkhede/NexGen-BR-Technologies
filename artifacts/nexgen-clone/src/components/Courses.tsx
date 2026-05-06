@@ -83,7 +83,7 @@ export default function Courses() {
                 <span className="text-[10px] text-gray-500">⏱ {c.duration}</span>
                 <span className={`text-[10px] font-bold ${c.levelColor}`}>{c.level}</span>
               </div>
-              <p className="text-gray-400 text-xs leading-relaxed mb-4 flex-grow">{c.desc}</p>
+              <p className="text-gray-400 text-xs leading-relaxed mb-4 flex-grow text-justify">{c.desc}</p>
               <div className="flex flex-wrap gap-1.5 mb-4">
                 {c.tags.map(t => <span key={t} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-gray-400">{t}</span>)}
               </div>

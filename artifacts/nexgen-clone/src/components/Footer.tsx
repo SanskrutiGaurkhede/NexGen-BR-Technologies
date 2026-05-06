@@ -43,12 +43,12 @@ export default function Footer({ onNavigate }: { onNavigate: (id: string) => voi
             {/* Social icons */}
             <div className="flex items-center gap-3">
               {[
-                { icon: "𝕏", label: "Twitter" },
-                { icon: "in", label: "LinkedIn" },
-                { icon: "▶", label: "YouTube" },
-                { icon: "📷", label: "Instagram" },
+                { icon: "𝕏", label: "Twitter", href: "#" },
+                { icon: "in", label: "LinkedIn", href: "https://www.linkedin.com/in/nexgen-br-technologies-6402b4408" },
+                { icon: "▶", label: "YouTube", href: "#" },
+                { icon: "📷", label: "Instagram", href: "#" },
               ].map((s) => (
-                <a key={s.label} href="#" className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors text-sm">
+                <a key={s.label} href={s.href} target={s.href !== "#" ? "_blank" : undefined} rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors text-sm">
                   {s.icon}
                 </a>
               ))}

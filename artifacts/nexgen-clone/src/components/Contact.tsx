@@ -42,7 +42,7 @@ export default function Contact() {
             </span>
           </h2>
           <p className="text-gray-400 max-w-xl">
-            Whether you're interested in courses, internships, or hiring. We typically respond within 24 hours. For urgent matters, reach out via WhatsApp.
+            Whether you're interested in courses, internships, or hiring. We typically respond within 24 hours.
           </p>
         </div>
 
@@ -90,7 +90,7 @@ export default function Contact() {
           <div className="lg:col-span-2 flex flex-col gap-4">
             {[
               { icon: "📧", title: "Email Us", detail: "info@nexgenbrtechnologies.com", sub: "info@nexgenbrtechnologies.com", link: "mailto:info@nexgenbrtechnologies.com" },
-              { icon: "💬", title: "WhatsApp / Call", detail: "+91 91234 56789", sub: "Urgent queries — chat directly", link: "https://wa.me/919123456789" },
+              { icon: "in", title: "LinkedIn", detail: "NexGen BR Technologies", sub: "Connect with us on LinkedIn", link: "https://www.linkedin.com/in/nexgen-br-technologies-6402b4408" },
               { icon: "📍", title: "Wardha, Nagpur", detail: "Maharashtra, India", sub: "Online & offline training available" },
             ].map(item => (
               <div key={item.title} className="rounded-2xl border border-white/8 bg-white/[0.02] p-5 flex gap-4">
